@@ -32,6 +32,7 @@ var myTopPostsMenuButton = document.getElementById('menu-my-top-posts');
 var unsolveIssuesMenuButton = document.getElementById('menu-issue-list');
 var solvedIssuesMenuButton = document.getElementById('menu-issue-solved');
 var logoutMenuButton = document.getElementById('menu-logout');
+var userMenuButton = document.getElementById('menu-user');
 var solvedIssuesSection = document.getElementById('solved-issue-list');
 var unsolveIssuesSection = document.getElementById('unsolve-issue-list');
 
@@ -347,6 +348,9 @@ window.addEventListener('load', function () {
 	logoutMenuButton.onclick = function () {
 		firebase.auth().signOut();
 		window.location.replace('../');
+	};
+  userMenuButton.onclick = function () {
+		window.location.replace('../main');
 	};
 	recentMenuButton.onclick = function () {
 		recentPostsSection.style.display = 'block';

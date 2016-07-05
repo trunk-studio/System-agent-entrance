@@ -254,7 +254,7 @@ export default StyleSheet.create({
         "textAlign": "left"
     },
     "form-bottom form textarea": {
-        "height": 100
+        "height": 150
     },
     "form-bottom form buttonbtn": {
         "width": "100%"
