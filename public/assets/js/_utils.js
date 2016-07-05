@@ -19,14 +19,14 @@ var fbUser = {
 			refreshToken: refreshToken,
 			providerData: providerData
 		}, null, '  ');
-		console.log("userInfo=>", userInfo);
+		// console.log("userInfo=>", userInfo);
     return userInfo;
 	},
   role: function (user) {
     let role = "";
     firebase.database().ref('roles/' + user.email.replace(".", "&*&")).on('value', function (snapshot) {
       role = snapshot.val();
-      console.log('role=>', role);
+      // console.log('role=>', role);
       if (!role) role = "user";
     });
     return role;
@@ -35,16 +35,16 @@ var fbUser = {
     this.info(user);
 
 		if (!user.emailVerified) {
-			console.log('email not Verified');
+			// console.log('email not Verified');
 		}
 
 		// check this user's role.
 		firebase.database().ref('roles/' + user.email.replace(".", "&*&")).on('value', function (snapshot) {
 			var role = snapshot.val();
-			console.log('role=>', role);
+			// console.log('role=>', role);
 			if (typeof role === 'undefined' || role === null ) role = "user";
       user.role = role;
-			console.log('user.role=>', user.role);
+			// console.log('user.role=>', user.role);
 
   		// set user data to db.
   		firebase.database().ref('users/' + user.uid).set({
@@ -53,7 +53,7 @@ var fbUser = {
   			role: user.role,
   		}, function() {
         if (isRedirect) fbUser.redirect(user);
-        console.log("set user done.");
+        // console.log("set user done.");
       });
 		});
 	},
@@ -63,10 +63,10 @@ var fbUser = {
 		// get link by user from db.
 		firebase.database().ref('users/' + user.uid).on('value', function (snapshot) {
 			var user = snapshot.val();
-			console.log('role=>', user.role);
+			// console.log('role=>', user.role);
 			firebase.database().ref('hosting/url/' + user.role).on('value', function (snapshot) {
 				var url = snapshot.val();
-				console.log('url=>', url);
+				// console.log('url=>', url);
 				window.location.assign(url);
 			});
 		});
