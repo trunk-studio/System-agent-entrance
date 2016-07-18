@@ -175,11 +175,9 @@
 	} // end onLoginStateChange
 
 	function handleCreateAnIssue(title, content, username, cb) {
-
 		var body = content +
 			"\n-------\n" +
-			" by user \"" + username + "\"\n" +
-			navigator.userAgent;
+			" by user \"" + username + "\"\n" + navigator.userAgent;
 		var post = $.ajax({
 			url: 'https://api.github.com/repos/trunk-studio/system-agent-core/issues',
 			type: 'post',
