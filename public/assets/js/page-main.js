@@ -140,9 +140,9 @@
 					$('.download-windows').click(function (e) {
 						e.preventDefault();
 						swalDownload({
-							title: "Windows 使用者請注意",
-							text: "請使用『系統管理員權限』啟動以避免異常。\n詳細操作步驟請見『常見問題 Q＆A』",
-							type: "warning",
+							title: "請注意",
+							text: "請先閱讀『常見問題 Q＆A』段落。",
+							type: "info",
 							link: $(this).attr('href'),
 							okBtnText: "我知道了",
 						});
@@ -181,7 +181,7 @@
 			" by user \"" + username + "\"\n" +
 			navigator.userAgent;
 		var post = $.ajax({
-			url: 'https://api.github.com/repos/trunk-studio/system-agent/issues',
+			url: 'https://api.github.com/repos/trunk-studio/system-agent-core/issues',
 			type: 'post',
 			headers: {
 				'Content-Type': 'application/json',
@@ -190,7 +190,7 @@
 			dataType: "json",
 			data: JSON.stringify({
 				"encoding": "utf-8",
-				"title": title + "-v0.1.0",
+				"title": title + "-v0.3.0",
 				"body": body,
 				"labels": [
         "ByPlatform"
