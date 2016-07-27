@@ -7,6 +7,7 @@
 		getKeys();
 		onLoginStateChange();
 		handleFormEvents();
+    getProductVersionAndUpdateDate();
 
 		$('#signout').click(function (event) {
 			/* Act on the event */
@@ -32,7 +33,7 @@
 		firebase.database().ref('tokens/github').on('value', function (snapshot) {
 			key = snapshot.val();
 		});
-	}
+	} // end getKeys
 
 	function setBg() {
 		$.backstretch([
@@ -67,8 +68,8 @@
 				var username = $(this).find('input[name="form-title"]').val();
 				var post = $(this).find('textarea[name="form-post"]').val();
 				// var username = firebase.auth().currentUser.displayName || firebase.auth().currentUser.email.split("@")[0];
-				console.log("username =>", username);
-				console.log("post =>", post);
+				// console.log("username =>", username);
+				// console.log("post =>", post);
 				e.preventDefault();
 				if (username !== "" && post !== "") {
 					swal({
@@ -136,8 +137,10 @@
 					$('.download-mac').attr('href', links.mac);
 					// } else {
 					$('.download-windows').attr('href', links.win);
+					$('.download-windows32').attr('href', links.win32);
+          // }
 
-					$('.download-windows').click(function (e) {
+					$('.download-windows, .download-windows32').click(function (e) {
 						e.preventDefault();
 						swalDownload({
 							title: "請注意",
@@ -204,6 +207,14 @@
 			}
 		});
 	} // end createAnIssue
+
+  function getProductVersionAndUpdateDate() {
+		firebase.database().ref('hosting/productInfo').on('value', function (snapshot) {
+      var values = snapshot.val();
+			$("#product_version").text(values.version);
+			$("#product_date").text(values.date);
+		});
+  } // end getProductVersionAndUpdateDate
 
 	function swalDownload(config) {
 		swal({
