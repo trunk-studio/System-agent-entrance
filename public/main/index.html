@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>系統檢測軟體::專案整合測試平台 - 下載與問題回報</title>
+  <title>System-Agent::Project Integrated Testing Platform - Download</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -29,6 +29,13 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 
+  <script src="../assets/js/i18n.min.js"></script>
+  <script type="text/javascript">
+    i18n.set({
+      'lang': 'en-us', //e.g. en-us, zh-tw. Default is auto detect from browser.
+      'path': '../assets/js/' // Default is empty (same level as i18n.js)
+    });
+  </script>
   <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -70,15 +77,15 @@
           <div class="col-sm-12 col-sm-offset-0 form-box">
             <div class="form-top">
               <div class="form-top-left">
-                <h3>系統檢測軟體
+                <h3>System-Agent
                   <h4>
-                    <p style="color:#888;">專案整合測試平台</p>
+                    <p style="color:#888;">Project Integrated Testing Platform</p>
                   </h4>
                 </h3>
               </div>
               <div class="form-top-right">
                 <i class="fa fa-tachometer"></i>
-                <button id="signout" class="btn">登出</button>
+                <button id="signout" class="btn">Logout</button>
               </div>
             </div>
             <!-- <a href="#" class="btn btn-primary btn-lg active" role="button">Primary link</a>
@@ -86,7 +93,7 @@
 
             <div class="form-medium">
               <!-- <i class="fa fa-chevron-right"></i> -->
-              <label for="section-readme">1．常見問題 Q＆A</label>
+              <label for="section-readme">1．Q＆A</label>
               <article name="section-article">
                 <ul>
                   <li><a href="http://mac-osx-for-newbie-book.kejyun.com/qanda/QAndAUnknownAppDeveloper.html" target="_blank">
@@ -101,15 +108,15 @@
 
             <div class="form-medium">
               <!-- <i class="fa fa-chevron-right"></i> -->
-              <label for="section-download">2.．下載檔案</label>
+              <label for="section-download">2.．Downloads</label>
               <section name="section-desc" class="text-center">
                 <p class="text-nowrap">
-                  當前版號：
+                  Version：
                   <mark><strong><label id="product_version">...</label></strong></mark>
-                  &nbsp;&nbsp;|&nbsp;&nbsp; 發布日期：
+                  &nbsp;&nbsp;|&nbsp;&nbsp; Date：
                   <mark><strong><label id="product_date">...</label></strong></mark>
                 </p>
-                <p>請依照您的作業系統版本下載對應的軟體。</p>
+                <p>Please download the software according to your operating system version.</p>
               </section>
               <section name="section-download" class="text-center">
                 <a class="download-mac btn-lg btn-primary" role="button" href="#!" disabled>
@@ -117,27 +124,27 @@
                 </a>
                 &nbsp;
                 <a class="download-windows btn-lg btn-primary" role="button" href="#!" disabled>
-                  <i class="fa fa-windows" aria-hidden="true"></i> Windows 64bit
+                  <i class="fa fa-windows" aria-hidden="true"></i> Windows
                 </a>
-                &nbsp;
+                <!-- &nbsp;
                 <a class="download-windows32 btn-lg btn-primary" role="button" href="#!" disabled>
                   <i class="fa fa-windows" aria-hidden="true"></i> Windows 32bit
-                </a>
+                </a> -->
               </section>
             </div>
 
             <div class="form-bottom">
               <form role="form" action="" method="post" class="post-form">
                 <!-- <i class="fa fa-chevron-right"></i> -->
-                <label for="form-post">3．問題回報</label>
+                <label for="form-post">3．Issue reports</label>
                 <div class="form-group">
                   <!-- <label class="sr-only" for="form-title">標題</label> -->
-                  <input type="text" name="form-title" placeholder="請輸入您的大名..." class="form-title form-control" id="form-title">
+                  <input type="text" name="form-title" placeholder="Type your name..." class="form-title form-control" id="form-title">
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" rows="8" id="form-post" name="form-post" placeholder="請輸入測試過程中發現的問題或是建議..." class="form-username form-control"></textarea>
+                  <textarea class="form-control" rows="8" id="form-post" name="form-post" placeholder="Type issues or suggestions..." class="form-username form-control"></textarea>
                 </div>
-                <button type="submit" class="btn">送出</button>
+                <button type="submit" class="btn">submit</button>
               </form>
             </div>
 
@@ -145,7 +152,7 @@
         </div>
         <div class="row">
           <div class="description">
-            測試平台由<a href="http://trunk.studio"><strong>創科資訊</strong></a>開發與維護.
+            This platform is handled by <a href="http://trunk.studio"><strong>Trunk-Studio</strong></a>.
           </div>
         </div>
       </div>

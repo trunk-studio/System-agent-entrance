@@ -29,8 +29,8 @@
 			});
 			var usr = $(this).find('input[type="text"]').val();
 			var pwd = $(this).find('input[type="password"]').val();
-			console.log("usr =>", usr);
-			console.log("pwd =>", pwd);
+			// console.log("usr =>", usr);
+			// console.log("pwd =>", pwd);
 			e.preventDefault();
 			validation(usr, pwd);
 		}); // end submit
@@ -44,7 +44,7 @@
 	}); // end ready
 
 	function validation(email, password) {
-		console.log("!!!!!!!!!!");
+		// console.log("!!!!!!!!!!");
 		firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
 			// Handle Errors here.
 			if (error.code === 'auth/wrong-password') {

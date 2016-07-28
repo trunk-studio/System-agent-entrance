@@ -1,6 +1,7 @@
 (function(){
 	var logoutTimmer = 0;
 	var key = "";
+  var version = "";
 
 	jQuery(document).ready(function () {
 		setBg();
@@ -73,13 +74,13 @@
 				e.preventDefault();
 				if (username !== "" && post !== "") {
 					swal({
-							title: "問題",
-							text: "您確定要送出了嗎？",
+							title: "Submit Report",
+							text: "Please ensure everything you typed in is correct.",
 							type: "info",
 							showCancelButton: true,
 							confirmButtonClass: "btn-danger",
-							confirmButtonText: "好的，我確定！",
-							cancelButtonText: "取消",
+							confirmButtonText: "Yes",
+							cancelButtonText: "No, Cancel.",
 							closeOnConfirm: false,
 							showLoaderOnConfirm: true,
 						},
@@ -91,7 +92,7 @@
 									title,
 									post);
 								handleCreateAnIssue(title, post, username, function () {
-									swal("感謝您", "回報成功囉！", "success");
+									swal("Thank You", "We will receive your feedback soon!", "success");
 									$('input[name="form-title"]').val("");
 									$('textarea[name="form-post"]').val("");
 								});
@@ -136,28 +137,34 @@
 					// if (navigator.userAgent.indexOf("Macintosh") !== -1) {
 					$('.download-mac').attr('href', links.mac);
 					// } else {
-					$('.download-windows').attr('href', links.win);
-					$('.download-windows32').attr('href', links.win32);
+          var win64Check1 = navigator.userAgent.indexOf('WOW64') > -1;
+          var win64Check2 = window.navigator.platform=='Win64';
+          var isWin64 = win64Check1 || win64Check2;
+          if (isWin64) {
+  					$('.download-windows').attr('href', links.win);
+          } else {
+  					$('.download-windows').attr('href', links.win32);
+          }
           // }
 
 					$('.download-windows, .download-windows32').click(function (e) {
 						e.preventDefault();
 						swalDownload({
-							title: "請注意",
-							text: "請先閱讀『常見問題 Q＆A』段落。",
+							title: "Attention!",
+							text: "Please be sure you have already read section Q＆A.",
 							type: "info",
 							link: $(this).attr('href'),
-							okBtnText: "我知道了",
+							okBtnText: "OK",
 						});
 					});
 					$('.download-mac').click(function (e) {
 						e.preventDefault();
 						swalDownload({
-							title: "請注意",
-							text: "請先閱讀『常見問題 Q＆A』段落。",
+							title: "Attention!",
+							text: "Please be sure you have already read section Q＆A.",
 							type: "info",
 							link: $(this).attr('href'),
-							okBtnText: "我知道了",
+							okBtnText: "OK",
 						});
 					});
 					// }
@@ -191,7 +198,7 @@
 			dataType: "json",
 			data: JSON.stringify({
 				"encoding": "utf-8",
-				"title": title + "-v0.3.0",
+				"title": title + "-" + version,
 				"body": body,
 				"labels": [
         "ByPlatform"
@@ -202,7 +209,7 @@
 				cb();
 			},
 			error: function (XMLHttpRequest, textStatus, errorThrown) {
-				swal("錯誤", "您與伺服器間的連線出了點問題。請稍候再試！\nerror code:101", "warning");
+				swal("Error", "There's something wrong in connection between you and issue report server. Please try again later.\nerror code:101", "warning");
 				console.log("create issue error=>", textStatus);
 			}
 		});
@@ -213,6 +220,7 @@
       var values = snapshot.val();
 			$("#product_version").text(values.version);
 			$("#product_date").text(values.date);
+      version = values.version;
 		});
   } // end getProductVersionAndUpdateDate
 
@@ -228,7 +236,7 @@
 			},
 			function () {
 				setTimeout(function () {
-					swal("您的下載已經開始");
+					swal("Your download will be start in few second.");
 					window.location = config.link;
 				}, 1000);
 			});
